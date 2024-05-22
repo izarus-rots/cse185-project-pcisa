@@ -1,5 +1,9 @@
+# setup.py
+
 import os
 from setuptools import setup, find_packages
+
+VERSION = '0.0.1' # TODO: implement version tracking
 
 setup(
     name='pcisa',
