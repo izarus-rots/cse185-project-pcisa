@@ -45,7 +45,8 @@ def pca_calculation(data: pandas.DataFrame, n_pcs: int):
 
 
     # return projected data:
-    
+
+    pca = None # placeholder
 
     principalComponents = pca.fit_transform(data)
     pcsDF = pandas.DataFrame(data = principalComponents)
