@@ -7,11 +7,12 @@ import anndata
 import pandas
 
 def run_pca(data: str, n_pcs: int, output: str = None):
+    ## TODO: add proper documentation
     # Load data and perform preprocessing
     adata = anndata.read(data)
     df = pandas.DataFrame(adata.X)
     
-    # TODO: add preprocessing based on user input
+    ## TODO: add preprocessing based on user input
 
     # Run PCA calculation
     pca = pca_calculation(df, n_pcs)
@@ -24,6 +25,7 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     print(f'PCA results saved to {output}')
 
 def pca_calculation(data: pandas.DataFrame, n_pcs: int):
+    ## TODO: add proper documentation
     ## TODO: implement PCA calculation, output "pca" variable in pandas DataFrame format
 
     # center datapoints:
