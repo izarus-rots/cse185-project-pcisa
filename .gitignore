@@ -4,3 +4,6 @@ venv/
 
 # Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+# Ignore LaTeX build files (used for assignment)
+latex/
