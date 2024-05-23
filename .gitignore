@@ -1,0 +1,6 @@
+# Ignore Python virtual environment
+venv/
+.python-version
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
