@@ -7,3 +7,6 @@ venv/
 
 # Ignore LaTeX build files (used for assignment)
 latex/
+
+# ignore macosx files (if any)
+.DS_Store
