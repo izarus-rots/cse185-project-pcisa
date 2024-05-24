@@ -26,7 +26,6 @@ def run_pca(data: str, n_pcs: int, output: str = None):
 
 def pca_calculation(data: pd.DataFrame, n_pcs: int):
     ## TODO: add proper documentation
-    ## TODO: implement PCA calculation, output "pca" variable in pandas DataFrame format
 
     # center datapoints / normalize data:
     for col in data.columns:
