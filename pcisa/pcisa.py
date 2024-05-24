@@ -2,15 +2,15 @@
 
 import os
 
-import numpy
+import numpy as np
 import anndata
-import pandas
+import pandas as pd
 
 def run_pca(data: str, n_pcs: int, output: str = None):
     ## TODO: add proper documentation
     # Load data and perform preprocessing
     adata = anndata.read(data)
-    df = pandas.DataFrame(adata.X)
+    df = pd.DataFrame(adata.X)
     
     ## TODO: add preprocessing based on user input
 
@@ -24,32 +24,35 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     pca.to_csv(output)
     print(f'PCA results saved to {output}')
 
-def pca_calculation(data: pandas.DataFrame, n_pcs: int):
+def pca_calculation(data: pd.DataFrame, n_pcs: int):
     ## TODO: add proper documentation
     ## TODO: implement PCA calculation, output "pca" variable in pandas DataFrame format
 
-    # center datapoints:
-
+    # center datapoints / normalize data:
+    for col in data.columns:
+        data[col] = (data[col] - data[col].mean()) / data[col].std()
+    # TODO: check mean_subtracted implementation (justify):
+    for col in data.columns:
+        data[col] = data[col] - data[col].mean()
 
     # calculate covariance matrix:
-
+    cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
 
     # calculate eigenvectors and eigenvalues:
-
+    eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 
     # sort eigenvectors by eigenvalues:
+    idx = np.argsort(eigenvalues)[::-1]
+    eigenvectors = eigenvectors[:, idx]
 
+    # select top n_pcs eigenvectors, using user input:
+    pcs = eigenvectors[:,: n_pcs]
 
-    # select top n_pcs eigenvectors:
+    # project data onto eigenvectors and give as output:
+    pca = np.dot(data.values, pcs)
 
-
-    # project data onto eigenvectors:
-
-
-    # return projected data:
-
-    pca = None # placeholder
-
-    principalComponents = pca.fit_transform(data)
-    pcsDF = pandas.DataFrame(data = principalComponents)
-    return pcsDF
+    # the commented code below is a placeholder
+    # pca = None
+    # principalComponents = pca.fit_transform(data)
+    # pcsDF = pd.DataFrame(data = principalComponents)
+    return pca
