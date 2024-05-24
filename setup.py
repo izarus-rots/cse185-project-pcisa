@@ -3,7 +3,7 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0' # TODO: implement version tracking
+VERSION = '0.1dev' # TODO: implement version tracking
 
 setup(
     name='pcisa',
