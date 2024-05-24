@@ -10,3 +10,6 @@ latex/
 
 # ignore macosx files (if any)
 .DS_Store
+
+# ignore testing file:
+pcisa/__main__.py
