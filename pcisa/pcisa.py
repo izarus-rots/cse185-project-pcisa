@@ -22,7 +22,7 @@ def main():
 
     args = parser.parse_args()
 
-    print(f'Running PCA on {args.input} and saving results to {args.output}')
+    print(f'Running PCA on {args.data} with {args.n_pcs} principal components.')
 
     run_pca(args.data, args.n_pcs)
 
