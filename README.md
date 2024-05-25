@@ -4,12 +4,13 @@ PCisA is a naïve Python implementation of principal component analysis (PCA) in
 
 # Installation
 ---
-Installation requires several packages (`anndata`, `numpy`, and `pandas`). You can install these with:
+Installation requires several packages (`anndata`, `numpy`, `pandas`, and `scipy`). You can install these with:
 
 ```
 pip install anndata
 pip install numpy
 pip install pandas
+pip install scipy
 ```
 
 With a terminal in the same directory as PCisA, to install run:
