@@ -32,6 +32,8 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     # TODO: add try and catch for filetype not readable by anndata (and output error message)
     adata = anndata.read_h5ad(data)
     df = pd.DataFrame(data=adata.X)
+    # testing if data loaded
+    print('data loaded successfully')
     
     ## TODO: add preprocessing based on user input
 
@@ -50,10 +52,13 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # center datapoints / normalize data:
     for col in data.columns:
-        data[col] = (data[col] - data[col].mean()) / data[col].std()
+        avg = data.mean(axis=1)
+        std = data.std(axis=1)
+        for i in range(len(data[col])):
+            data[col][i] = (data[col][i] - avg) / std
     # TODO: check mean_subtracted implementation (justify):
-    for col in data.columns:
-        data[col] = data[col] - data[col].mean()
+    # for col in data.columns:
+    #     data[col] = data[col] - data.mean(axis=0)
 
     # calculate covariance matrix:
     cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
