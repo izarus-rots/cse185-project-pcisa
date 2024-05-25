@@ -1,6 +1,6 @@
 # cse185 project PCisA
 ---
-PCisA is a naïve Python implementation of PCA in the place of `scanpy` PCA, meant to be used in conjunction with `anndata`.
+PCisA is a naïve Python implementation of principal component analysis (PCA) in the place of `scanpy` PCA, meant to be used in conjunction with `anndata`.
 
 # Installation
 ---
@@ -12,23 +12,33 @@ pip install numpy
 pip install pandas
 ```
 
-PCisA can be installed as such:
+With a terminal in the same directory as PCisA, to install run:
 
 ```
-<tbd>
+python setup.py install
 ```
+
+If the install worked, typing `pcisa -h` should show the help menu and basic usage instructions.
 
 # Usage
 ---
 PCisA's basic usage:
 
 ```
-pcisa <tbd>
+pcisa --data DATA --n_pcs N
+```
+
+where `--data` expects the path to a high-dimensional matrix and `--n_pcs` expects a number greater than zero.
+
+To run PCisA on the test example provided in this repository, you can run
+
+```
+pcisa --data example-files/poisson_matrix.npy --n_pcs 2
 ```
 
 ## All Options
 ---
-Required inputs are an `anndata` object and a value `n_pcs`. Other options can change how the calculation is performed:
+Required inputs are a matrix-like file and a value `n_pcs`. Other options can change how the calculation is performed:
 - <tbd>
 
 # Contributors
