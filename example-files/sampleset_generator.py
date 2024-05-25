@@ -18,4 +18,6 @@ lambd = 5
 matrix = generate_poisson_matrix(dimensions, lambd)
 
 # output to csv using pandas
-np.save('example-files/poisson_matrix.npy', matrix)
+# np.save('example-files/poisson_matrix.npy', matrix)
+df = pd.DataFrame(matrix)
+df.to_csv('example-files/poisson_matrix.csv', index=False)
