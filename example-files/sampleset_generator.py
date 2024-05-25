@@ -1,23 +1,11 @@
 import numpy as np
 import pandas as pd
+import anndata as ad
+from scipy.sparse import csr_matrix
 
-# use a poisson distribution to generate a high-dimensional matrix
-def generate_poisson_matrix(dimensions, lambd):
-    shape = tuple(dimensions)
-    matrix = np.random.poisson(lambd, shape)
-    return matrix
+# generating a poisson distribution anndata object (mimicks sparse count information)
+counts = csr_matrix(np.random.poisson(1, size=(100, 2000)), dtype=np.float32)
+adata = ad.AnnData(counts)
 
-# # Example usage
-# dimensions = (10, 10, 10)  # dimensions
-# lambd = 5  # lambda parameter
-# matrix = generate_poisson_matrix(dimensions, lambd)
-
-# two dimensional example! OK to reduce using principal components..
-dimensions = (1000, 1000)
-lambd = 5
-matrix = generate_poisson_matrix(dimensions, lambd)
-
-# output to csv using pandas
-# np.save('example-files/poisson_matrix.npy', matrix)
-df = pd.DataFrame(matrix)
-df.to_csv('example-files/poisson_matrix.csv', index=False)
+# save to h5ad file
+adata.write('example-files/poisson.h5ad', compression='gzip')
