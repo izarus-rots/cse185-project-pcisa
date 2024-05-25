@@ -31,7 +31,7 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     # Load data and perform preprocessing
     # TODO: add try and catch for filetype not readable by anndata (and output error message)
     adata = anndata.read_h5ad(data)
-    df = adata.to_df()
+    df = adata.X.to_df()
     
     ## TODO: add preprocessing based on user input
 
