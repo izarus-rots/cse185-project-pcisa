@@ -7,7 +7,6 @@ import anndata
 import pandas as pd
 
 import argparse
-from .pcisa import run_pca
 
 def main():
     parser = argparse.ArgumentParser(description='Principal Component Analysis in Python')
