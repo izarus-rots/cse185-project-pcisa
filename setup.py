@@ -27,7 +27,7 @@ setup(
     author='Isabella Garcia',
     author_email='i4garcia@ucsd.edu',
     packages=find_packages(),
-    install_requires=['numpy', 'anndata', 'matplotlib', 'pandas'],
+    install_requires=['numpy', 'anndata', 'matplotlib', 'pandas', 'scipy'],
     entry_points={
         'console_scripts': [
             'pcisa=pcisa.pcisa:main'
