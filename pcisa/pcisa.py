@@ -57,10 +57,9 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     # Run PCA calculation
     pca = pca_calculation(df, n_pcs)
 
-    # Save results to .csv
+    # Save results to .csv in main directory or user-specified location
     if output is None:
-        base = os.path.splitext(data)
-        output = f'{base}_pca.csv'
+        output = 'pca_results.csv'
     try:
         pca.to_csv(output)
     except AttributeError:
