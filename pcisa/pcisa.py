@@ -90,6 +90,10 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     """
 
     # center datapoints / normalize data:
+    
+    # TODO: setting values through chained assignment warning !
+    # see https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy !
+    # behavior will change in pandas 3.0 !
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
