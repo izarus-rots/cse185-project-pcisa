@@ -49,7 +49,7 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     # TODO: add try and catch for filetype not readable by anndata (and output error message)
     adata = anndata.read_h5ad(data)
     df = pd.DataFrame(data=adata.X)
-    # testing if data loaded
+    # CHECKPOINT TEST 1:
     print('data loaded successfully')
     
     ## TODO: add preprocessing based on user input
@@ -88,25 +88,38 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
         std = data[col].std()
         for i in range(len(data[col])):
             data[col][i] = (data[col][i] - avg) / std
+    # CHECKPOINT TEST 2:
+    print('data normalized successfully')
+
     # TODO: check mean_subtracted implementation (justify):
     # for col in data.columns:
     #     data[col] = data[col] - data.mean(axis=0)
 
     # calculate covariance matrix:
     cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
+    # CHECKPOINT TEST 3:
+    print('covariance matrix calculated successfully')
 
     # calculate eigenvectors and eigenvalues:
     eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+    # CHECKPOINT TEST 4:
+    print('eigenvectors and eigenvalues calculated successfully')
 
     # sort eigenvectors by eigenvalues:
     idx = np.argsort(eigenvalues)[::-1]
     eigenvectors = eigenvectors[:, idx]
+    # CHECKPOINT TEST 5:
+    print('eigenvectors sorted successfully')
 
     # select top n_pcs eigenvectors, using user input:
     pcs = eigenvectors[:,: n_pcs]
+    # CHECKPOINT TEST 6:
+    print('principal components selected successfully')
 
     # project data onto eigenvectors and give as output:
     pca = np.dot(data.values, pcs)
+    # CHECKPOINT TEST 7:
+    print('PCA calculated successfully')
 
     # the commented code below is a placeholder
     # pca = None
