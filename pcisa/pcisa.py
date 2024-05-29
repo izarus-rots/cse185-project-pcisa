@@ -84,10 +84,13 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # center datapoints / normalize data:
     for col in data.columns:
-        avg = data[col].mean()
-        std = data[col].std()
+        avg = data[col].fillna(0).mean()
+        std = data[col].fillna(0).std()
         for i in range(len(data[col])):
-            data[col][i] = (data[col][i] - avg) / std
+            if pd.isna(data[col][i]):
+                data[col][i] = 0
+            else:
+                data[col][i] = (data[col][i] - avg) / std
     # CHECKPOINT TEST 2:
     print('data normalized successfully')
 
