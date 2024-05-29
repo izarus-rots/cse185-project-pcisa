@@ -128,4 +128,6 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     # pca = None
     # principalComponents = pca.fit_transform(data)
     # pcsDF = pd.DataFrame(data = principalComponents)
+    print(type(pca))
+    print(pca)
     return pca
