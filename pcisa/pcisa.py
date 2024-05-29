@@ -61,8 +61,16 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     if output is None:
         base = os.path.splitext(data)
         output = f'{base}_pca.csv'
-    pca.to_csv(output)
+    try:
+        pca.to_csv(output)
+    except AttributeError:
+        pca = pd.DataFrame(data=pca)
+        pca.to_csv(output)
+    except: 
+        print('Error saving PCA results to .csv')
+
     print(f'PCA results saved to {output}')
+    return
 
 def pca_calculation(data: pd.DataFrame, n_pcs: int):
     """
