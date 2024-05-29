@@ -27,7 +27,24 @@ def main():
     run_pca(args.data, args.n_pcs)
 
 def run_pca(data: str, n_pcs: int, output: str = None):
-    ## TODO: add proper documentation
+    """
+    Preprocess input and run PCA function
+    
+    Parameters
+    ----------
+    data : str
+        Path to input data file, expects matrix-like
+        
+    n_pcs : int
+        Number of principal components to calculate
+        
+    output : str
+        Path to output file, .csv format default
+        
+    Returns
+    -------
+    None
+    """
     # Load data and perform preprocessing
     # TODO: add try and catch for filetype not readable by anndata (and output error message)
     adata = anndata.read_h5ad(data)
@@ -48,7 +65,22 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     print(f'PCA results saved to {output}')
 
 def pca_calculation(data: pd.DataFrame, n_pcs: int):
-    ## TODO: add proper documentation
+    """
+    Perform PCA on input data and return the principal components
+    
+    Parameters
+    ----------
+    data : pd.DataFrame
+        Input data for PCA, expects matrix-like
+        
+    n_pcs : int
+        Number of principal components to calculate
+        
+    Returns
+    -------
+    pca : np.array
+        Principal components of the input data
+    """
 
     # center datapoints / normalize data:
     for col in data.columns:
