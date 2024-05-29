@@ -7,7 +7,7 @@ import random
 # generating a poisson distribution anndata object (mimicks sparse count information)
 def generate_sample(size: tuple, seed: int = 0):
     """
-    Generate a random sparse count matrix
+    Generate a random sparse count matrix (WORK IN PROGRESS)
     
     Parameters
     ----------
@@ -22,10 +22,11 @@ def generate_sample(size: tuple, seed: int = 0):
     anndata.AnnData
         Anndata object with sparse count matrix
     """
-    counts = csr_matrix(np.random.poisson(1, size=size), dtype=np.float32)
+    np.random.seed(seed)
+    counts = np.random.poisson(1, size=size).astype(np.float32)
     adata = ad.AnnData(counts)
     return adata
 
 # generate sample dataset with set seed = 0
-sample = generate_sample((100, 2000), 0)
+sample = generate_sample((100, 2000), 12345)
 sample.write('example-files/poisson.h5ad', compression='gzip')
