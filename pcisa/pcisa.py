@@ -52,8 +52,8 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # center datapoints / normalize data:
     for col in data.columns:
-        avg = data.mean(axis=1)
-        std = data.std(axis=1)
+        avg = data[col].mean()
+        std = data[col].std()
         for i in range(len(data[col])):
             data[col][i] = (data[col][i] - avg) / std
     # TODO: check mean_subtracted implementation (justify):
