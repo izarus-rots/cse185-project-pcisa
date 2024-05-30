@@ -34,7 +34,7 @@ where `--data` expects the path to a high-dimensional matrix and `--n_pcs` expec
 To run PCisA on the test example provided in this repository, you can run
 
 ```
-pcisa --data example-files/poisson_matrix.npy --n_pcs 2
+pcisa --data example-files/poisson.h5ad --n_pcs 2
 ```
 
 ## All Options
