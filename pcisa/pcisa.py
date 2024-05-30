@@ -26,7 +26,7 @@ def main():
     # print running options if they are set
     for arg in args:
         if args.__getattribute__(arg) is not None:
-            print(f'{arg}: {args.__getattribute__(arg)}')
+            print(f'Option {arg}: {args.__getattribute__(arg)}')
 
     run_pca(args.data, args.n_pcs)
 
