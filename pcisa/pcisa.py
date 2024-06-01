@@ -24,9 +24,9 @@ def main():
 
     print(f'Running PCA on {args.data} with {args.n_pcs} principal components.')
     # print running options if they are set
-    for arg in args:
-        if args.__getattribute__(arg) is not None:
-            print(f'Option {arg}: {args.__getattribute__(arg)}')
+    for arg in vars(args):
+        if getattr(args, arg) is not None:
+            print(f'Option {arg}: {getattr(args, arg)}')
 
     run_pca(args.data, args.n_pcs)
 
