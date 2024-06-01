@@ -18,7 +18,7 @@ def main():
 
     parser.add_argument('-s', '--standardize', action='store_true', help='Standardize the input data before running PCA')
     parser.add_argument('-o', '--output', type=str, help='Path to output file, .csv format default', metavar="output")
-    parser.add_argument('p', '--plot', action='store_true', help='Plot the PCA results')
+    parser.add_argument('-p', '--plot', action='store_true', help='Plot the PCA results')
 
     args = parser.parse_args()
 
