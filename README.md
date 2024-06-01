@@ -39,8 +39,16 @@ pcisa --data example-files/poisson.h5ad --n_pcs 2
 
 ## All Options
 ---
-Required inputs are a matrix-like file and a value `n_pcs`. Other options can change how the calculation is performed:
-- <tbd>
+Required inputs are a matrix-like file and a value `n_pcs`. Other options can change how the calculation is performed or how the output will be given:
+- `--output <directory>` or `-o <directory>`
+
+    Allows you to specify a location for the output. By default, outputs to the current directory `.`.
+- `--plot` or `-p`
+
+    Generates a quick plot for the PC results (only works if `n_pcs = 2`). Default: `False`.
+- `--standardize` or `-s`
+
+    Standardize the data or not (by default, `True`).
 
 # Contributors
 ---
