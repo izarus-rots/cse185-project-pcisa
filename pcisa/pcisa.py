@@ -13,12 +13,12 @@ def main():
         prog="pcisa",
         description='Principal Component Analysis in Python'
     )
-    parser.add_argument('--data', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="data")
-    parser.add_argument('--n_pcs', type=int, required=True, help='Number of principal components calculated', metavar="n_pcs")
+    parser.add_argument('-d', '--data', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="data")
+    parser.add_argument('-n', '--n_pcs', type=int, required=True, help='Number of principal components calculated', metavar="n_pcs")
 
-    parser.add_argument('--standardize', action='store_true', help='Standardize the input data before running PCA', metavar="standardize")
-    parser.add_argument('--output', type=str, help='Path to output file, .csv format default', metavar="output")
-    parser.add_argument('--plot', action='store_true', help='Plot the PCA results', metavar="plot")
+    parser.add_argument('-s', '--standardize', action='store_true', help='Standardize the input data before running PCA', metavar="standardize")
+    parser.add_argument('-o', '--output', type=str, help='Path to output file, .csv format default', metavar="output")
+    parser.add_argument('p', '--plot', action='store_true', help='Plot the PCA results', metavar="plot")
 
     args = parser.parse_args()
 
