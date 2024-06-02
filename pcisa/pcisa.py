@@ -95,7 +95,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
         
     Returns
     -------
-    pca : np.array
+    pca : pd.DataFrame
         Principal components of the input data
     """
 
@@ -128,10 +128,22 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     pcs = eigenvectors[:,: n_pcs]
 
     # project data onto eigenvectors and give as output:
-    pca = np.dot(data.values, pcs)
+    pcadf = pd.DataFrame(np.dot(data.values, pcs))
 
-    # the commented code below is a placeholder
-    # pca = None
-    # principalComponents = pca.fit_transform(data)
-    # pcsDF = pd.DataFrame(data = principalComponents)
-    return pca
+    # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
+    pcdict = {}
+    for i in range(n_pcs):
+        pcdict[f'PC{i}'] = pcadf[i]
+    # skip first row and first column
+    pcadf = pcadf.iloc[1:, 1:]
+    pcadf.rename(columns=pcdict, inplace=True)
+
+    # remove extraneous information from datapoints
+    for i in range(n_pcs):
+        pcadf[f'PC{i}'] = pcadf[f'PC{i}'].apply(lambda x: x.replace('(', '').replace(')', '').replace('+0j', ''))
+    
+    # recast to dtype=np.float64
+    for i in range(n_pcs):
+        pcadf[f'PC{i}'] = pcadf[f'PC{i}'].astype(np.float64)
+
+    return pcadf
