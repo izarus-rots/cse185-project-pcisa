@@ -99,11 +99,12 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
+        # fix chained assignment by using .loc accessor (check)
         for i in range(len(data[col])):
             if pd.isna(data[col][i]):
-                data[col][i] = 0
+                data.loc[i, col] = 0
             else:
-                data[col][i] = (data[col][i] - avg) / std
+                data.loc[i, col] = (data[col][i] - avg) / std
 
     # TODO: check mean_subtracted implementation (justify):
     # for col in data.columns:
