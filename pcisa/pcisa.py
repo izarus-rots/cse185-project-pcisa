@@ -8,6 +8,8 @@ import pandas as pd
 
 import argparse
 
+from .quickplot import quickplot
+
 def main():
     parser = argparse.ArgumentParser(
         prog="pcisa",
@@ -32,6 +34,22 @@ def main():
     print('Running PCA! Please wait.')
 
     run_pca(args.file, args.n_pcs, args.output, args.outputdir)
+
+    if args.plot is not False:
+        print('You set the argument "plot" to True. Plotting now: ')
+        # check that file exists:
+        if args.outputdir is not None:
+            csv_path = os.path.join(args.outputdir, args.output)
+            if os.path.exists(csv_path):
+                ## TODO:    edit plot argument so that user can specify which PCs to plot;
+                ##          also optionally add a way to change the name of the output
+                quickplot(csv_path, [1, 2], 'quickPCA.png')
+            else:
+                print(f"Output directory with output filename '{csv_path}' does not exist.")
+        else:
+            csv_path = os.path.join(os.getcwd(), args.output) if args.output is not None else os.path.join(os.getcwd(), "pca_results.csv")
+            quickplot(csv_path, [1, 2], 'quickPCA.png')
+
 
 def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str = None):
     """
