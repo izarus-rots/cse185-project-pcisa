@@ -31,7 +31,7 @@ def main():
 
     print('Running PCA! Please wait.')
 
-    run_pca(args.file, args.n_pcs)
+    run_pca(args.file, args.n_pcs, args.output, args.outdir)
 
 def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str = None):
     """
@@ -46,6 +46,9 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
         Number of principal components to calculate
         
     output : str
+        Output file name
+
+    outdir : str
         Path to output file, .csv format default
         
     Returns
@@ -95,10 +98,6 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     """
 
     # center datapoints / normalize data:
-    
-    # TODO: setting values through chained assignment warning !
-    # see https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy !
-    # behavior will change in pandas 3.0 !
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
