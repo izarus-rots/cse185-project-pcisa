@@ -13,7 +13,7 @@ def main():
         prog="pcisa",
         description='Principal Component Analysis in Python'
     )
-    parser.add_argument('-f', '--file', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="data")
+    parser.add_argument('-f', '--file', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="file")
     parser.add_argument('-n', '--n_pcs', type=int, required=True, help='Number of principal components calculated', metavar="n_pcs")
 
     parser.add_argument('-s', '--standardize', action='store_true', help='Standardize the input data before running PCA')
@@ -23,7 +23,7 @@ def main():
 
     args = parser.parse_args()
 
-    print(f'Running PCA on {args.data} with {args.n_pcs} principal components.')
+    print(f'Running PCA on {args.file} with {args.n_pcs} principal components.')
     # print running options if they are set
     for arg in vars(args):
         if getattr(args, arg) is not None:
