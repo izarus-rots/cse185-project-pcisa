@@ -31,7 +31,7 @@ def main():
 
     print('Running PCA! Please wait.')
 
-    run_pca(args.file, args.n_pcs, args.output, args.outdir)
+    run_pca(args.file, args.n_pcs, args.output, args.output-dir)
 
 def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str = None):
     """
