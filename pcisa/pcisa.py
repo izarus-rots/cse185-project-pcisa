@@ -28,6 +28,8 @@ def main():
         if getattr(args, arg) is not None:
             print(f'Option {arg}: {getattr(args, arg)}')
 
+    print('Running PCA! Please wait.')
+
     run_pca(args.data, args.n_pcs)
 
 def run_pca(data: str, n_pcs: int, output: str = None):
@@ -61,7 +63,7 @@ def run_pca(data: str, n_pcs: int, output: str = None):
 
     # Save results to .csv in main directory or user-specified location
     if output is None:
-        output = 'pca_results.csv'
+        output = os.path.join(os.path.dirname(__file__), 'pca_results.csv')
     try:
         pca.to_csv(output)
     except AttributeError:
