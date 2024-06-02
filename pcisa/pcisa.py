@@ -151,7 +151,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
     pcdict = {}
     for i in range(n_pcs):
-        pcdict[f'PC{i}'] = pcadf[i]
+        pcdict[i+1] = f'PC{i+1}'
     # skip first row and first column
     pcadf = pcadf.iloc[1:, 1:]
     pcadf.rename(columns=pcdict, inplace=True)
