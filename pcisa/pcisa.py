@@ -13,11 +13,12 @@ def main():
         prog="pcisa",
         description='Principal Component Analysis in Python'
     )
-    parser.add_argument('-d', '--data', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="data")
+    parser.add_argument('-f', '--file', type=str, required=True, help='Path to input data file, expects matrix-like', metavar="data")
     parser.add_argument('-n', '--n_pcs', type=int, required=True, help='Number of principal components calculated', metavar="n_pcs")
 
     parser.add_argument('-s', '--standardize', action='store_true', help='Standardize the input data before running PCA')
-    parser.add_argument('-o', '--output', type=str, help='Path to output file, .csv format default', metavar="output")
+    parser.add_argument('-o', '--output', type=str, help='Output file name', metavar="output")
+    parser.add_argument('-d', '--output-dir', type=str, help='Path to output file, .csv format default', metavar="outdir")
     parser.add_argument('-p', '--plot', action='store_true', help='Plot the PCA results')
 
     args = parser.parse_args()
@@ -32,7 +33,7 @@ def main():
 
     run_pca(args.data, args.n_pcs)
 
-def run_pca(data: str, n_pcs: int, output: str = None):
+def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str = None):
     """
     Preprocess input and run PCA function
     
@@ -62,17 +63,17 @@ def run_pca(data: str, n_pcs: int, output: str = None):
     pca = pca_calculation(df, n_pcs)
 
     # Save results to .csv in main directory or user-specified location
-    if output is None:
-        output = os.path.join(os.path.dirname(__file__), 'pca_results.csv')
+    if outdir is None:
+        outdir = os.path.join(os.getcwd(), output)
     try:
-        pca.to_csv(output)
+        pca.to_csv(outdir)
     except AttributeError:
         pca = pd.DataFrame(data=pca)
-        pca.to_csv(output)
+        pca.to_csv(outdir)
     except: 
         print('Error saving PCA results to .csv')
 
-    print(f'PCA results saved to {output}')
+    print(f'PCA results saved to {outdir}')
     return
 
 def pca_calculation(data: pd.DataFrame, n_pcs: int):
