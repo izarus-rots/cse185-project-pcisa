@@ -26,26 +26,30 @@ If the install worked, typing `pcisa -h` should show the help menu and basic usa
 PCisA's basic usage:
 
 ```
-pcisa --data DATA --n_pcs N
+pcisa -f DATA -n N
 ```
 
-where `--data` expects the path to a high-dimensional matrix and `--n_pcs` expects a number greater than zero.
+where `-f` expects the path to a high-dimensional matrix and `-n` expects a number greater than zero.
 
 To run PCisA on the test example provided in this repository, you can run
 
 ```
-pcisa --data example-files/poisson.h5ad --n_pcs 2
+pcisa -f example-files/poisson.h5ad -n 2
 ```
 
 ## All Options
 ---
 Required inputs are a matrix-like file and a value `n_pcs`. Other options can change how the calculation is performed or how the output will be given:
-- `--output <directory>` or `-o <directory>`
+- `--output <filename>` or `-o <filename>`
+
+    Allows you to specify a filename for the output. By default, outputs as `'pca_results.csv'`.
+
+- `--output-dir <directory>` or `-d <directory>`
 
     Allows you to specify a location for the output. By default, outputs to the current directory `.`.
 - `--plot` or `-p`
 
-    Generates a quick plot for the PC results (only works if `n_pcs = 2`). Default: `False`.
+    Generates a quick plot for the PC results (only uses top two PCs). Default: `False`.
 - `--standardize` or `-s`
 
     Standardize the data or not (by default, `True`).
