@@ -18,7 +18,7 @@ def main():
 
     parser.add_argument('-s', '--standardize', action='store_true', help='Standardize the input data before running PCA')
     parser.add_argument('-o', '--output', type=str, help='Output file name', metavar="output")
-    parser.add_argument('-d', '--output-dir', type=str, help='Path to output file, .csv format default', metavar="outdir")
+    parser.add_argument('-d', '--outputdir', type=str, help='Path to output file, .csv format default', metavar="outputdir")
     parser.add_argument('-p', '--plot', action='store_true', help='Plot the PCA results')
 
     args = parser.parse_args()
@@ -31,7 +31,7 @@ def main():
 
     print('Running PCA! Please wait.')
 
-    run_pca(args.file, args.n_pcs, args.output, args.output-dir)
+    run_pca(args.file, args.n_pcs, args.output, args.outputdir)
 
 def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str = None):
     """

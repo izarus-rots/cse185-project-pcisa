@@ -13,13 +13,15 @@ pip install pandas
 pip install scipy
 ```
 
-With a terminal in the same directory as PCisA, to install run:
+To install, clone the repo, navigate to the directory, and install with the setup.py script:
 
 ```
+git clone https://github.com/izarus-rots/cse185-project-pcisa
+cd cse185-project-pcisa
 python setup.py install
 ```
 
-If the install worked, typing `pcisa -h` should show the help menu and basic usage instructions.
+If the install worked, typing `pcisa -h` should show the help menu with basic usage instructions.
 
 # Usage
 ---
@@ -44,7 +46,7 @@ Required inputs are a matrix-like file and a value `n_pcs`. Other options can ch
 
     Allows you to specify a filename for the output. By default, outputs as `'pca_results.csv'`.
 
-- `--output-dir <directory>` or `-d <directory>`
+- `--outputdir <directory>` or `-d <directory>`
 
     Allows you to specify a location for the output. By default, outputs to the current directory `.`.
 - `--plot` or `-p`
