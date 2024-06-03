@@ -157,7 +157,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     pcadf = pcadf.iloc[1:, :]
     # pcadf = pcadf.iloc[1:, 1:]
     pcadf.rename(columns=pcdict, inplace=True)
-    print('COLS: ' + pcadf.columns)
+    print('COLS: ' + str(pcadf.columns))
 
     # remove extraneous information from datapoints
     for i in range(n_pcs):
