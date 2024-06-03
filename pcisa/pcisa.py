@@ -152,9 +152,11 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     pcdict = {}
     for i in range(n_pcs):
         pcdict[i+1] = f'PC{i+1}'
-    # skip first row and first column
+    # skip only the first row
+    # pcadf = pcadf.iloc[1:, :]
     pcadf = pcadf.iloc[1:, 1:]
     pcadf.rename(columns=pcdict, inplace=True)
+    print('COLS: ' + pcadf.columns)
 
     # remove extraneous information from datapoints
     for i in range(n_pcs):
