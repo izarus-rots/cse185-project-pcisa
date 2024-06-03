@@ -8,7 +8,7 @@ import pandas as pd
 
 import argparse
 import os
-from .pcisa import run_pca
+
 from .quickplot import quickplot
 
 def main():
