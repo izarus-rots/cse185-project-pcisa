@@ -105,21 +105,21 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     print('COLS: ' + str(pcadf.columns))
 
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
-    pcdict = {}
-    for i in range(n_pcs):
-        pcdict[i+1] = f'PC{i+1}'
-    # skip only the first row
-    pcadf = pcadf.iloc[1:, :]
-    # pcadf = pcadf.iloc[1:, 1:]
-    pcadf.rename(columns=pcdict, inplace=True)
-    print('COLS: ' + str(pcadf.columns))
+    # pcdict = {}
+    # for i in range(n_pcs):
+    #     pcdict[i+1] = f'PC{i+1}'
+    # # skip only the first row
+    # pcadf = pcadf.iloc[1:, :]
+    # # pcadf = pcadf.iloc[1:, 1:]
+    # pcadf.rename(columns=pcdict, inplace=True)
+    # print('COLS: ' + str(pcadf.columns))
 
-    # remove extraneous information from datapoints
-    for i in range(n_pcs):
-        pcadf[f'PC{i}'] = pcadf[f'PC{i+1}'].apply(lambda x: str(x).replace('(', '').replace(')', '').replace('+0j', ''))
+    # # remove extraneous information from datapoints
+    # for i in range(n_pcs):
+    #     pcadf[f'PC{i}'] = pcadf[f'PC{i+1}'].apply(lambda x: str(x).replace('(', '').replace(')', '').replace('+0j', ''))
     
-    # recast to dtype=np.float64
-    for i in range(n_pcs):
-        pcadf[f'PC{i}'] = pcadf[f'PC{i}'].astype(np.float64)
+    # # recast to dtype=np.float64
+    # for i in range(n_pcs):
+    #     pcadf[f'PC{i}'] = pcadf[f'PC{i}'].astype(np.float64)
 
     return pcadf
