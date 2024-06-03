@@ -30,7 +30,7 @@ setup(
     install_requires=['numpy', 'anndata', 'matplotlib', 'pandas', 'scipy'],
     entry_points={
         'console_scripts': [
-            'pcisa=pcisa.pcisa:main'
+            'pcisa=__main__:main'
         ]
     },
 )
