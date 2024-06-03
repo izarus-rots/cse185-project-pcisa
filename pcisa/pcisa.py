@@ -147,7 +147,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # project data onto eigenvectors and give as output:
     pcadf = pd.DataFrame(np.dot(data.values, pcs))
-    print('COLS: ' + pcadf.columns)
+    print('COLS: ' + str(pcadf.columns))
 
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
     pcdict = {}
