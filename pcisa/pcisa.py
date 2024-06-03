@@ -7,7 +7,6 @@ import anndata
 import pandas as pd
 
 import argparse
-import os
 
 from .quickplot import quickplot
 
