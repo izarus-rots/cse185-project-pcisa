@@ -1,3 +1,5 @@
+## NOTE: deprecated
+
 # pcisa/__main__.py
 
 # import argparse
