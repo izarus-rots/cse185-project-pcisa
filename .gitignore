@@ -11,5 +11,5 @@ latex/
 # ignore macosx files (if any)
 .DS_Store
 
-# ignore testing jupyter notebook
-pcisa/quicktest.ipynb
+# ignore testing folder
+testing/
