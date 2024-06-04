@@ -11,7 +11,8 @@ Installation requires several packages (`anndata`, `numpy`, `pandas`, and `scipy
 pip install anndata numpy pandas scipy
 ```
 
-To install, clone the repo, navigate to the directory, and install with the setup.py script:
+## Basic Installation
+To install, clone the repo, navigate to the directory, and install with pip:
 
 ```
 git clone https://github.com/izarus-rots/cse185-project-pcisa
@@ -19,6 +20,7 @@ cd cse185-project-pcisa
 pip install -e .
 ```
 
+## Local Installation
 For local install (ex: in Jupyter notebook), use:
 ```
 git clone https://github.com/izarus-rots/cse185-project-pcisa
@@ -26,7 +28,13 @@ cd cse185-project-pcisa
 pip install --user -e .
 ```
 
-Sometimes, the user directory is not on the system PATH. You can find the path with `python -m site --user-base`, and add this to the PATH by adding `export PATH=$PATH:'python -m site --user-base'/bin` to your `.bashrc` or `bash_profile`.
+Sometimes, the user directory is not on the system PATH. You can find the path with `python -m site --user-base`, and add the following line to your `.bashrc` or `.bash_profile` file.: 
+
+```
+export PATH=$PATH:`python -m site --user-base`/bin
+``` 
+
+Update your PATH with `source ~/.bashrc` or `source ~/.bash_profile`.
 
 If the install worked, typing `pcisa -h` should show the help menu with basic usage instructions.
 
@@ -38,7 +46,7 @@ PCisA's basic usage:
 pcisa -f DATA -n N
 ```
 
-where `-f` expects the path to a high-dimensional matrix and `-n` expects a number greater than zero.
+where `DATA` expects the path to a high-dimensional matrix and `N` expects a number greater than zero.
 
 To run PCisA on the test example provided in this repository, you can run
 
