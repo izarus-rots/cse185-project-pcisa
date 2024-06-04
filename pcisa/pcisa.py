@@ -150,18 +150,12 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # project data onto eigenvectors and give as output:
     pcadf = pd.DataFrame(np.dot(data.values, pcs))
-    print('COLS: ' + str(pcadf.columns))
-    print(pcadf.head())
 
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
     pcdict = {}
     for i in range(n_pcs):
         pcdict[i] = f'PC{i+1}'
-    # skip first row, first column
-    # pcadf = pcadf.iloc[1:, 1:]
     pcadf = pcadf.rename(columns=pcdict)
-    print('COLS: ' + str(pcadf.columns))
-    print(pcadf.head())
 
     # remove extraneous information from datapoints
     for i in range(n_pcs):
