@@ -8,10 +8,7 @@ PCisA is a naïve Python implementation of principal component analysis (PCA) in
 Installation requires several packages (`anndata`, `numpy`, `pandas`, and `scipy`). You can install these with:
 
 ```
-pip install anndata
-pip install numpy
-pip install pandas
-pip install scipy
+pip install anndata numpy pandas scipy
 ```
 
 To install, clone the repo, navigate to the directory, and install with the setup.py script:
@@ -19,8 +16,17 @@ To install, clone the repo, navigate to the directory, and install with the setu
 ```
 git clone https://github.com/izarus-rots/cse185-project-pcisa
 cd cse185-project-pcisa
-python setup.py install
+pip install -e .
 ```
+
+For local install (ex: in Jupyter notebook), use:
+```
+git clone https://github.com/izarus-rots/cse185-project-pcisa
+cd cse185-project-pcisa
+pip install --user -e .
+```
+
+Sometimes, the user directory is not on the system PATH. You can find the path with `python -m site --user-base`, and add this to the PATH by adding `export PATH=$PATH:'python -m site --user-base'/bin` to your `.bashrc` or `bash_profile`.
 
 If the install worked, typing `pcisa -h` should show the help menu with basic usage instructions.
 
