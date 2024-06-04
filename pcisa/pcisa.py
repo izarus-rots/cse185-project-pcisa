@@ -159,7 +159,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
         pcdict[i] = f'PC{i+1}'
     # skip first row, first column
     # pcadf = pcadf.iloc[1:, 1:]
-    pcadf.rename(columns=pcdict)
+    pcadf = pcadf.rename(columns=pcdict)
     print('COLS: ' + str(pcadf.columns))
     print(pcadf.head())
 
