@@ -28,7 +28,7 @@ def main():
     print(f'Running PCA on {args.file} with {args.n_pcs} principal components.')
     # print running options if they are set
     for arg in vars(args):
-        if getattr(args, arg) is not None:
+        if getattr(args, arg) is not None or False:
             print(f'Option {arg}: {getattr(args, arg)}')
 
     print('Running PCA! Please wait.')
