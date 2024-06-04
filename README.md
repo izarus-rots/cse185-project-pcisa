@@ -53,9 +53,6 @@ Required inputs are a matrix-like file and a value `n_pcs`. Other options can ch
 - `--plot` or `-p`
 
     Generates a quick plot for the PC results (only uses top two PCs). Default: `False`.
-- **DEPRECATED**: `--standardize` or `-s`
-
-    Control over standardization of data. By default, `False`. Note that standardization necessarily occurs in the PCA calculation.
 
 # Contributors
 
