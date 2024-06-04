@@ -37,10 +37,6 @@ def main():
 
     if args.plot is not False:
         print('You set the argument "plot" to True. Plotting now: ')
-
-
-
-        print('test')
         # check that file exists:
         if args.outputdir is not None:
             if args.output is None:
@@ -89,6 +85,8 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
     pca = pca_calculation(df, n_pcs)
 
     # Save results to .csv in current or user-specified location
+    if output is None:
+        output = "pca_results.csv"
     if outdir is None:
         outdir = os.path.join(os.getcwd(), output)
     else:
