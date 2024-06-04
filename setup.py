@@ -6,6 +6,9 @@ from setuptools import setup, find_packages
 VERSION = '0.1dev' # TODO: implement version tracking
 
 
+# conceptually there is no reason why removing this (nonfunctional) version keeping code should make the program function (or not function).
+# but it does. don't touch.
+
 # version-keeping code based on pybedtools & gymreklab demo project (https://github.com/gymreklab/cse185-demo-project/tree/main)
 curdir = os.path.abspath(os.path.dirname(__file__))
 MAJ = 0
