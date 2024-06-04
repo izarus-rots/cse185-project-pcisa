@@ -11,5 +11,6 @@ latex/
 # ignore macosx files (if any)
 .DS_Store
 
-# ignore testing folder
+# ignore testing folder and testing files
 testing/
+test_*.py
