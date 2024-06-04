@@ -37,8 +37,14 @@ def main():
 
     if args.plot is not False:
         print('You set the argument "plot" to True. Plotting now: ')
+
+
+
+        print('test')
         # check that file exists:
         if args.outputdir is not None:
+            if args.output is None:
+                args.output = "pca_results.csv"
             csv_path = os.path.join(args.outputdir, args.output)
             if os.path.exists(csv_path):
                 ## TODO:    edit plot argument so that user can specify which PCs to plot;
