@@ -30,7 +30,7 @@ cd cse185-project-pcisa
 pip install --user -e .
 ```
 
-Sometimes, the user directory is not on the system PATH. You can find the path with `python -m site --user-base`, and add the following line to your `.bashrc` or `.bash_profile` file.: 
+Sometimes, the user directory is not on the system PATH. You can find the path with `python -m site --user-base`, and add the following line to your `.bashrc` or `.bash_profile` file: 
 
 ```
 export PATH=$PATH:`python -m site --user-base`/bin
