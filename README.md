@@ -20,6 +20,8 @@ cd cse185-project-pcisa
 pip install -e .
 ```
 
+If the install worked, typing `pcisa -h` in the terminal should show the help menu with basic usage instructions.
+
 ## Local Installation
 For local install (ex: in Jupyter notebook), use:
 ```
@@ -36,7 +38,7 @@ export PATH=$PATH:`python -m site --user-base`/bin
 
 Update your PATH with `source ~/.bashrc` or `source ~/.bash_profile`.
 
-If the install worked, typing `pcisa -h` should show the help menu with basic usage instructions.
+If the install worked, typing `pcisa -h` in the terminal should show the help menu with basic usage instructions.
 
 # Usage
 
