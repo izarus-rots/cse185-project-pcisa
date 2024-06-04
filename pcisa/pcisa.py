@@ -165,11 +165,11 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
 
     # remove extraneous information from datapoints
     for i in range(n_pcs):
-        pcadf[f'PC{i + 1}'] = pcadf[f'PC{i+1}'].apply(lambda x: str(x).replace('(', '').replace(')', '').replace('+0j', ''))
+        pcadf[f'PC{i + 1}'] = pcadf[f'PC{i+1}'].apply(lambda x: str(x).replace('(', '').replace(')', '').replace('+ 0.000000j', ''))
     
     # recast to dtype=np.float64
     for i in range(n_pcs):
-        pcadf[f'PC{i}'] = pcadf[f'PC{i}'].astype(np.float64)
+        pcadf[f'PC{i+1}'] = pcadf[f'PC{i}'].astype(np.float64)
 
     return pcadf
 
