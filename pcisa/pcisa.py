@@ -169,7 +169,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     
     # recast to dtype=np.float64
     for i in range(n_pcs):
-        pcadf[f'PC{i+1}'] = pcadf[f'PC{i}'].astype(np.float64)
+        pcadf[f'PC{i+1}'] = pcadf[f'PC{i+1}'].astype(np.float64)
 
     return pcadf
 
