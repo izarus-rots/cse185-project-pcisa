@@ -135,14 +135,8 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
-        # fix chained assignment by using .loc accessor (check)
-        for i in range(len(data[col])):
-            if pd.isna(data[col][i]):
-                data.loc[i, col] = 0
-            else:
-                # suppress div by zero warning
-                np.seterr(invalid='ignore')
-                data.loc[i, col] = np.divide((data[col][i] - avg), std)
+        # potential faster calculation:
+        data[col] = np.where(pd.isna(data[col]), 0, (data[col] - avg) / std)
 
     # TODO: check mean_subtracted implementation (justify):
     # for col in data.columns:
