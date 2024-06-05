@@ -1,7 +1,6 @@
 # cse185 project PCisA
 
 PCisA is a naïve Python implementation of principal component analysis (PCA) in the place of `scanpy` PCA, meant to be used in conjunction with `anndata`.
-[comment]: <> (https://github.com/izarus-rots/cse185-project-pcisa)
 
 # Installation
 
@@ -68,7 +67,7 @@ Required inputs are a matrix-like file and a value `n_pcs`. Other options can ch
     Allows you to specify a location for the output. By default, outputs to the current directory `.`.
 - `--plot` or `-p`
 
-    Generates a quick plot for the PC results (only uses top two PCs). Default: `False`.
+    Generates a quick plot for the PC results (only uses top two PCs). Default: `False`. Currently only outputs to the current directory `.` and will be named `quickPCA.png`.
 
 # Contributors
 
