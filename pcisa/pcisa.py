@@ -76,7 +76,7 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
     """
     # Load data and perform preprocessing
     try:
-        if data == "example-files/poisson.h5ad":
+        if data.split('/')[-1] == "poisson.h5ad":
             adata = ad.read_h5ad(data)
         else:
             matrix = mmread(data).toarray().T
