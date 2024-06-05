@@ -6,6 +6,7 @@ import numpy as np
 import anndata as ad
 import pandas as pd
 from scipy.io import mmread
+from scipy.sparse.linalg import eigsh
 
 import argparse
 
@@ -151,7 +152,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     print("Calculating eigenvectors and eigenvalues...")
     cov_matrix[np.isnan(cov_matrix)] = 0
     cov_matrix[np.isinf(cov_matrix)] = 0
-    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
+    eigenvalues, eigenvectors = eigsh(cov_matrix, k=6)
 
     # sort eigenvectors by eigenvalues:
     print("Sorting...")
