@@ -29,7 +29,7 @@ def main():
     print(f'Running PCA on {args.file} with {args.n_pcs} principal components.')
     # print running options if they are set
     for arg in vars(args):
-        if getattr(args, arg) is not None or False:
+        if getattr(args, arg) is not None or False and arg not in ['file', 'n_pcs']:
             print(f'Option {arg}: {getattr(args, arg)}')
 
     print('Running PCA! Please wait.')
@@ -37,7 +37,6 @@ def main():
     run_pca(args.file, args.n_pcs, args.output, args.outputdir)
 
     if args.plot is not False:
-        print('You set the argument "plot" to True. Plotting now: ')
         # check that file exists:
         if args.outputdir is not None:
             if args.output is None:
@@ -128,11 +127,9 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     """
 
     # cast everything to dtype=np.float64 !!!
-    print("Casting to float...")
     data = data.astype(np.float64)
 
     # center datapoints / normalize data:
-    print("Centering data...")
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
@@ -144,12 +141,10 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     #     data[col] = data[col] - data.mean(axis=0)
 
     # calculate covariance matrix:
-    print("Calculating covariance matrix...")
     cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
 
     # calculate eigenvectors and eigenvalues:
     # ignore inf or NaN values:
-    print("Calculating eigenvectors and eigenvalues...")
     cov_matrix[np.isnan(cov_matrix)] = 0
     cov_matrix[np.isinf(cov_matrix)] = 0
 
@@ -157,20 +152,16 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     eigenvalues, eigenvectors = eigsh(cov_matrix, k=6)
 
     # sort eigenvectors by eigenvalues:
-    print("Sorting...")
     idx = np.argsort(eigenvalues)[::-1]
     eigenvectors = eigenvectors[:, idx]
 
     # select top n_pcs eigenvectors, using user input:
-    print("Selecting top PCs...")
     pcs = eigenvectors[:,: n_pcs]
 
     # project data onto eigenvectors and give as output:
-    print("Projecting data...")
     pcadf = pd.DataFrame(np.dot(data.values, pcs))
 
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
-    print("Cleaning up data...")
     pcdict = {}
     for i in range(n_pcs):
         pcdict[i] = f'PC{i+1}'
