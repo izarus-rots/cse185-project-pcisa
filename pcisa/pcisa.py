@@ -151,7 +151,7 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     print("Calculating eigenvectors and eigenvalues...")
     cov_matrix[np.isnan(cov_matrix)] = 0
     cov_matrix[np.isinf(cov_matrix)] = 0
-    eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
 
     # sort eigenvectors by eigenvalues:
     print("Sorting...")
