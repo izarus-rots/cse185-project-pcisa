@@ -152,6 +152,8 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     print("Calculating eigenvectors and eigenvalues...")
     cov_matrix[np.isnan(cov_matrix)] = 0
     cov_matrix[np.isinf(cov_matrix)] = 0
+
+    cov_matrix = cov_matrix.values # potential fix for eigsh
     eigenvalues, eigenvectors = eigsh(cov_matrix, k=6)
 
     # sort eigenvectors by eigenvalues:
