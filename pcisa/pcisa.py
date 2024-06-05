@@ -149,6 +149,9 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
 
     # calculate eigenvectors and eigenvalues:
+    # ignore inf or NaN values:
+    cov_matrix[np.isnan(cov_matrix)] = 0
+    cov_matrix[np.isinf(cov_matrix)] = 0
     eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 
     # sort eigenvectors by eigenvalues:
