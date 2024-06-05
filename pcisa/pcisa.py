@@ -80,6 +80,12 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
     except:
         matrix = mmread(data).toarray().T
         adata = ad.AnnData(matrix)
+
+        # if more than 500 cells or 5,000 genes, reduce:
+        if adata.shape[0] > 500:
+            adata = adata[:500]
+        if adata.shape[1] > 5000:
+            adata = adata[:5000]
     # except:
     #     print('Error loading data file')
     df = pd.DataFrame(data=adata.X)
