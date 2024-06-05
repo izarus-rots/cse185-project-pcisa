@@ -125,6 +125,9 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
         Principal components of the input data
     """
 
+    # cast everything to dtype=np.float64 !!!
+    data = data.astype(np.float64)
+
     # center datapoints / normalize data:
     for col in data.columns:
         avg = data[col].fillna(0).mean()
@@ -134,7 +137,9 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
             if pd.isna(data[col][i]):
                 data.loc[i, col] = 0
             else:
-                data.loc[i, col] = (data[col][i] - avg) / std
+                # suppress div by zero warning
+                np.seterr(invalid='ignore')
+                data.loc[i, col] = np.divide((data[col][i] - avg), std)
 
     # TODO: check mean_subtracted implementation (justify):
     # for col in data.columns:
