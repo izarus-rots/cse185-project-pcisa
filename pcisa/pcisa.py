@@ -3,8 +3,9 @@
 import os
 
 import numpy as np
-import anndata
+import anndata as ad
 import pandas as pd
+from scipy.io import mmread
 
 import argparse
 
@@ -74,8 +75,13 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
     None
     """
     # Load data and perform preprocessing
-    # TODO: add try and catch for filetype not readable by anndata (and output error message)
-    adata = anndata.read_h5ad(data)
+    try:
+        adata = ad.read_h5ad(data)
+    except:
+        matrix = mmread(data).toarray().T
+        adata = ad.AnnData(matrix)
+    # except:
+    #     print('Error loading data file')
     df = pd.DataFrame(data=adata.X)
     
     ## TODO: add preprocessing based on user input
