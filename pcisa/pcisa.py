@@ -187,6 +187,3 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     print(pcadf.iloc[:3, :3])
 
     return pcadf
-
-if __name__ == '__main__':
-    main()
