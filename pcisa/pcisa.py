@@ -74,15 +74,12 @@ def run_pca(data: str, n_pcs: int, output: str = "pca_results.csv", outdir: str 
     -------
     None
     """
-    # Load data and perform preprocessing
-    try:
-        if data.split('/')[-1] == "poisson.h5ad":
-            adata = ad.read_h5ad(data)
-        else:
-            matrix = mmread(data).toarray().T
-            adata = ad.AnnData(matrix)
-    except:
-        print('Error loading data file')
+# Load data and perform preprocessing
+    if data.split('/')[-1] == "poisson.h5ad":
+        adata = ad.read_h5ad(data)
+    else:
+        matrix = mmread(data).toarray().T
+        adata = ad.AnnData(matrix)
     df = pd.DataFrame(data=adata.X)
     
     ## TODO: add preprocessing based on user input
