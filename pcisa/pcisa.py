@@ -126,40 +126,51 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
         Principal components of the input data
     """
 
-    # cast everything to dtype=np.float64 !!!
+    # Step 1: Casting data to dtype=np.float64
     data = data.astype(np.float64)
+    print("Step 1: Casting data to dtype=np.float64")
+    print(data.iloc[:3, :3])
 
-    # center datapoints / normalize data:
+    # Step 2: Centering and normalizing data
     for col in data.columns:
         avg = data[col].fillna(0).mean()
         std = data[col].fillna(0).std()
         # potential faster calculation:
         data[col] = np.where(pd.isna(data[col]), 0, (data[col] - avg) / std)
+    print("Step 2: Centering and normalizing data")
+    print(data.iloc[:3, :3])
 
-    # TODO: check mean_subtracted implementation (justify):
-    # for col in data.columns:
-    #     data[col] = data[col] - data.mean(axis=0)
-
-    # calculate covariance matrix:
+    # Step 3: Calculating covariance matrix
     cov_matrix = data.cov() # TODO: check implementation versus using np.dot and vectorizing (speed and memory considerations)
+    print("Step 3: Calculating covariance matrix")
+    print(cov_matrix.iloc[:3, :3])
 
-    # calculate eigenvectors and eigenvalues:
+    # Step 4: Calculating eigenvectors and eigenvalues
     # ignore inf or NaN values:
     cov_matrix[np.isnan(cov_matrix)] = 0
     cov_matrix[np.isinf(cov_matrix)] = 0
 
     cov_matrix = cov_matrix.values # potential fix for eigsh
     eigenvalues, eigenvectors = eigsh(cov_matrix, k=6)
+    print("Step 4: Calculating eigenvectors and eigenvalues")
+    print(cov_matrix.iloc[:3, :3])
 
     # sort eigenvectors by eigenvalues:
     idx = np.argsort(eigenvalues)[::-1]
     eigenvectors = eigenvectors[:, idx]
 
+    print("Step 5: Sorting eigenvectors by eigenvalues")
+    print(eigenvectors[:3, :3])
+
     # select top n_pcs eigenvectors, using user input:
     pcs = eigenvectors[:,: n_pcs]
+    print("Step 6: Selecting top n_pcs eigenvectors")
+    print(pcs[:3, :3])
 
     # project data onto eigenvectors and give as output:
     pcadf = pd.DataFrame(np.dot(data.values, pcs))
+    print("Step 7: Projecting data onto eigenvectors")
+    print(pcadf.iloc[:3, :3])
 
     # cleaning up dataframe by renaming columns, removing extraneous rows, etc...
     pcdict = {}
@@ -174,6 +185,9 @@ def pca_calculation(data: pd.DataFrame, n_pcs: int):
     # recast to dtype=np.float64
     for i in range(n_pcs):
         pcadf[f'PC{i+1}'] = pcadf[f'PC{i+1}'].astype(np.float64)
+    
+    print("Final PCA results")
+    print(pcadf.iloc[:3, :3])
 
     return pcadf
 
